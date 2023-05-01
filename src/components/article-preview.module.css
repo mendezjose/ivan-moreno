@@ -27,3 +27,10 @@
   display: flex;
   justify-content: space-between;
 }
+
+.imagelink:hover {
+  transition: opacity 0.2s ease;
+  cursor: pointer;
+  opacity: 0.75;
+  border: 1px solid white;
+}

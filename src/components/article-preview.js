@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
+import Masonry from 'react-responsive-masonry'
 
 import Container from './container'
 import Tags from './tags'
@@ -13,26 +14,37 @@ const ArticlePreview = ({ posts }) => {
 
   return (
     <Container>
-      <ul className={styles.articleList}>
+      <Masonry columnsCount={3} gutter="1rem">
         {posts.map((post) => {
           return (
-            <li key={post.slug}>
-              <Link to={`/blog/${post.slug}`} className={styles.link}>
-                <GatsbyImage alt="" image={post.heroImage.gatsbyImage} />
-                <h2 className={styles.title}>{post.title}</h2>
-              </Link>
-              <div>
-                {post.description?.raw && renderRichText(post.description)}
-              </div>
-              <div className={styles.meta}>
-                <small className="meta">{post.publishDate}</small>
-                <Tags tags={post.tags} />
-              </div>
-            </li>
+            <Link to={`/blog/${post.slug}`} className={styles.imagelink}>
+              <GatsbyImage alt="" image={post.heroImage.gatsbyImage} />
+            </Link>
           )
         })}
-      </ul>
+      </Masonry>
     </Container>
+    // <Container>
+    //   <ul className={styles.articleList}>
+    //     {posts.map((post) => {
+    //       return (
+    //         <li key={post.slug}>
+    //           <Link to={`/blog/${post.slug}`} className={styles.link}>
+    //             <GatsbyImage alt="" image={post.heroImage.gatsbyImage} />
+    //             <h2 className={styles.title}>{post.title}</h2>
+    //           </Link>
+    //           <div>
+    //             {post.description?.raw && renderRichText(post.description)}
+    //           </div>
+    //           <div className={styles.meta}>
+    //             <small className="meta">{post.publishDate}</small>
+    //             <Tags tags={post.tags} />
+    //           </div>
+    //         </li>
+    //       )
+    //     })}
+    //   </ul>
+    // </Container>
   )
 }
 
