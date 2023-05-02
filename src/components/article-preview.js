@@ -19,6 +19,10 @@ const ArticlePreview = ({ posts }) => {
           return (
             <Link to={`/blog/${post.slug}`} className={styles.imagelink}>
               <GatsbyImage alt="" image={post.heroImage.gatsbyImage} />
+              <div class={styles.tapa}>
+                <h2>{post.title}</h2>
+                <p>{renderRichText(post.description)}</p>
+              </div>
             </Link>
           )
         })}
